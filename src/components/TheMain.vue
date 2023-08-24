@@ -41,6 +41,10 @@ export default {
 <template>
     <div class="container">
         <div class="row">
+            <div class="card-counter">
+                <p class="text-white p-2">Found 20 cards</p>
+            </div>
+
             <div class="col" v-for="card in cards" :key="card.id">
 
                 <div class="card text-start mb-3">
@@ -57,6 +61,11 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.card-counter {
+    height: 50px;
+    background-color: black;
+}
+
 .container {
     width: 900px;
 
