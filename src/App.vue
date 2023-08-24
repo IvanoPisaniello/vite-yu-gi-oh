@@ -1,30 +1,42 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
+<script >
+import TheMain from "./components/TheMain.vue"
+import TheHeader from "./components/TheHeader.vue"
+
+
+export default {
+  components: {
+    TheMain,
+    TheHeader,
+  }
+}
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <header>
+    <TheHeader></TheHeader>
+  </header>
+  <main class="main-section">
+    <div class="cards-container container">
+      <TheMain></TheMain>
+    </div>
+  </main>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+<style lang="scss">
+body {
+  background-color: orange;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+.main-section {
+  background-color: orange;
+
+
+  .cards-container {
+    margin-top: 100px;
+    background-color: white;
+    width: 1000px;
+    padding: 50px;
+  }
+
 }
 </style>
