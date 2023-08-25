@@ -40,7 +40,7 @@ export default {
 
 <template>
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="card-counter">
                 <p class="text-white p-2">Found 20 cards</p>
             </div>
@@ -64,6 +64,7 @@ export default {
 .card-counter {
     height: 50px;
     background-color: black;
+    width: 97.5%;
 }
 
 .container {
