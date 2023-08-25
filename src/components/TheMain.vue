@@ -2,10 +2,12 @@
 import axios from "axios";
 import Card from "./Card.vue";
 import Loader from "../components/Loader.vue";
+import { store } from "../store";
 export default {
     components: {
         Loader,
         Card,
+
     },
 
     data() {
@@ -13,13 +15,14 @@ export default {
             cards: [],
             loading: false,
             cardsCounter: "",
+            store,
 
         }
     },
     methods: {
 
-        fetchCards() {
-            const url = "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0"
+        fetchCards(newUrl) {
+            const url = newUrl ?? "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=40&offset=0"
             this.loading = true;
             axios.get(url).then((response) => {
 
@@ -32,9 +35,19 @@ export default {
 
         },
 
+        watch: {
+            "store.searchArchetype": function (searchArchetype) {
+                this.cards = [];
+
+                this.fetchCards(`https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=${searchArchetype}&num=40&offset=0`)
+            },
+        },
+
+
+
 
         fetchCounter() {
-            const url = "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0"
+            const url = "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=40&offset=0"
             axios.get(url).then((response) => {
 
 

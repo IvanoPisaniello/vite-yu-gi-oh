@@ -1,13 +1,16 @@
 <script>
 import axios from "axios";
+import { store } from "../store";
 export default {
     data() {
         return {
             archetypes: "",
-            selectedArchetype: "",
+            // selectedArchetype: null,
+            store,
 
 
         }
+
     },
 
     methods: {
@@ -21,25 +24,25 @@ export default {
 
             })
 
+
         },
 
-
     },
-
     mounted() {
         this.fetchArchetype();
-    }
 
+    },
 
 
 }
 
+
 </script>
 
 <template>
-    <select class="form-select" aria-label="Default select example" v-model="selectedArchetype">
+    <select class="form-select" aria-label="Default select example" v-model="store.searchArchetype">
         <option selected>Select Type</option>
-        <option value="1" v-for="archetype in archetypes">
+        <option v-for="archetype in archetypes" :value="archetype.archetype_name">
             {{ archetype.archetype_name }}
         </option>
 
