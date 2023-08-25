@@ -35,13 +35,7 @@ export default {
 
         },
 
-        watch: {
-            "store.searchArchetype": function (searchArchetype) {
-                this.cards = [];
 
-                this.fetchCards(`https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=${searchArchetype}&num=40&offset=0`)
-            },
-        },
 
 
 
@@ -60,9 +54,15 @@ export default {
         this.fetchCards();
         this.fetchCounter();
 
-    }
+    },
 
+    watch: {
+        "store.searchArchetype": function (searchArchetype) {
+            this.cards = [];
 
+            this.fetchCards(`https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=${searchArchetype}&num=40&offset=0`)
+        },
+    },
 }
 
 
