@@ -1,12 +1,17 @@
 <script>
 import axios from "axios";
-import Card from "./Card.vue"
+import Card from "./Card.vue";
+import Loader from "../components/Loader.vue";
 export default {
-    Card,
+    components: {
+        Loader,
+        Card,
+    },
 
     data() {
         return {
             cards: [],
+            loading: false,
 
         }
     },
@@ -14,10 +19,12 @@ export default {
 
         fetchCards() {
             const url = "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0"
-
+            this.loading = true;
             axios.get(url).then((response) => {
 
-
+                setTimeout(() => {
+                    this.loading = false;
+                }, 1000);
                 this.cards = response.data.data;
                 console.log(this.cards)
             })
@@ -56,6 +63,7 @@ export default {
                 </div>
 
             </div>
+            <Loader v-if="loading"></Loader>
         </div>
     </div>
 </template>

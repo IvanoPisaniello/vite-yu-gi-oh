@@ -4,11 +4,13 @@ import TheHeader from "./components/TheHeader.vue"
 import Select from "./components/Select.vue"
 
 
+
 export default {
   components: {
     TheMain,
     TheHeader,
     Select,
+
   }
 }
 </script>
@@ -23,6 +25,7 @@ export default {
   <main class="main-section">
     <div class="cards-container container">
       <TheMain></TheMain>
+
     </div>
   </main>
 </template>
