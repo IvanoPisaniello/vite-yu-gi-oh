@@ -12,6 +12,7 @@ export default {
         return {
             cards: [],
             loading: false,
+            cardsCounter: "",
 
         }
     },
@@ -29,12 +30,22 @@ export default {
                 console.log(this.cards)
             })
 
+        },
 
 
-        }
+        fetchCounter() {
+            const url = "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0"
+            axios.get(url).then((response) => {
+
+
+                this.cardsCounter = response.data.meta;
+                console.log(this.cardsCounter)
+            })
+        },
     },
     mounted() {
         this.fetchCards();
+        this.fetchCounter();
 
     }
 
@@ -49,7 +60,7 @@ export default {
     <div class="container">
         <div class="row justify-content-center">
             <div class="card-counter">
-                <p class="text-white p-2">Found 20 cards</p>
+                <p class="text-white p-2">found {{ cardsCounter.current_rows }} cards</p>
             </div>
 
             <div class="col" v-for="card in cards" :key="card.id">
