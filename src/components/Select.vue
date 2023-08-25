@@ -1,16 +1,48 @@
 <script>
+import axios from "axios";
 export default {
+    data() {
+        return {
+            archetypes: "",
+            selectedArchetype: "",
+
+
+        }
+    },
+
+    methods: {
+
+        fetchArchetype() {
+            const url = "https://db.ygoprodeck.com/api/v7/archetypes.php";
+
+            axios.get(url).then((response) => {
+
+                this.archetypes = response.data;
+
+            })
+
+        },
+
+
+    },
+
+    mounted() {
+        this.fetchArchetype();
+    }
+
+
 
 }
 
 </script>
 
 <template>
-    <select class="form-select" aria-label="Default select example">
+    <select class="form-select" aria-label="Default select example" v-model="selectedArchetype">
         <option selected>Select Type</option>
-        <option value="1">Alien</option>
-        <option value="2">Noble Knight</option>
-        <option value="3">Melodious</option>
+        <option value="1" v-for="archetype in archetypes">
+            {{ archetype.archetype_name }}
+        </option>
+
     </select>
 </template>
 
